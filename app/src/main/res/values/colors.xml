@@ -6,4 +6,5 @@
     <color name="custom_gray">#DADADA</color>
     <color name="custom_yellow">#FFFF00</color>
     <color name="custom_green">#003839</color>
+    <color name="custom_red">#F44336</color>
 </resources>
