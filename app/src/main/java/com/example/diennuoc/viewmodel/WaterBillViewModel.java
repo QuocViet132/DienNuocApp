@@ -5,9 +5,9 @@ import androidx.databinding.Bindable;
 
 import com.example.diennuoc.BR;
 
-public class ElectricityBillViewModel extends BaseObservable {
+public class WaterBillViewModel extends BaseObservable {
     private String startDate, endDate, priceBeforeTax, priceTax, priceTotal;
-    private String firstNumber, secondNumber, totalAmountElectricity;
+    private String firstNumber, secondNumber, totalAmountWater;
 
     @Bindable
     public String getStartDate() {
@@ -80,12 +80,12 @@ public class ElectricityBillViewModel extends BaseObservable {
     }
 
     @Bindable
-    public String getTotalAmountElectricity() {
-        return totalAmountElectricity;
+    public String getTotalAmountWater() {
+        return totalAmountWater;
     }
 
-    public void setTotalAmountElectricity(String totalAmountElectricity) {
-        this.totalAmountElectricity = totalAmountElectricity;
-        notifyPropertyChanged(BR.totalAmountElectricity);
+    public void setTotalAmountWater(String totalAmountWater) {
+        this.totalAmountWater = totalAmountWater;
+        notifyPropertyChanged(BR.totalAmountWater);
     }
 }

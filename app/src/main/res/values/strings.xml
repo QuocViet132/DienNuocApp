@@ -10,7 +10,6 @@
     <string name="option_statistic_home">Thống Kê</string>
 
     <!--     Electricity Bill Activity    -->
-
     <string name="title_electric_bill">Tính Điện</string>
     <string name="from_startdate_to_enddate">Từ ngày - đến ngày</string>
     <string name="firstNumber">Số đầu</string>
@@ -18,9 +17,16 @@
     <string name="totalAmountElectricity">Tổng điện năng tiêu thụ (kWh)</string>
     <string name="payment">Thành tiền</string>
     <string name="price_before_tax">Tiền trước thuế</string>
-    <string name="price_tax">Thuế GTGT (8%)</string>
+    <string name="price_electric_tax">Thuế GTGT (8%)</string>
     <string name="price_total">Tổng cộng (VNĐ)</string>
+
+    <!--     Electricity Bill Activity    -->
+    <string name="title_water_bill">Tính Nước</string>
+    <string name="totalAmountWater">Khối lượng nước tiêu thụ (m3)</string>
+    <string name="price_water_tax">Thuế GTGT (5%)</string>
 
     <!-- Electric Price Fragment -->
     <string name="detail">Theo quyết định số 1062/QĐ-BCT giá bán lẻ điện cho sinh hoạt được tính như sau:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

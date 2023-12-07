@@ -27,25 +27,25 @@ public class ElectricityBillActivity extends AppCompatActivity {
     private double priceBeforeTax, priceTax, priceTotal;
     private int firstNum, secondNum, totalAmountElectricity;
     private ActivityElectricityBillBinding mActivityElectricityBillBinding;
+    private ElectricityBillViewModel electricityBillViewModel = new ElectricityBillViewModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivityElectricityBillBinding = ActivityElectricityBillBinding.inflate(getLayoutInflater());
-        ElectricityBillViewModel electricityBillViewModel = new ElectricityBillViewModel();
 
-        clickButton(electricityBillViewModel);
+        clickButton();
 
         mActivityElectricityBillBinding.setElectricityBillViewModel(electricityBillViewModel);
         setContentView(mActivityElectricityBillBinding.getRoot());
     }
 
-    private void clickButton(ElectricityBillViewModel electricityBillViewModel) {
+    private void clickButton() {
         mActivityElectricityBillBinding.ivInfor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.add(R.id.layout_electric_bill, new ElectricPriceFragment());
+                fragmentTransaction.add(R.id.layout_electric_bill, new ElectricPriceFragment()).addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
@@ -67,13 +67,13 @@ public class ElectricityBillActivity extends AppCompatActivity {
         mActivityElectricityBillBinding.btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculatePriceElectricity(electricityBillViewModel);
+                calculatePriceElectricity();
             }
         });
     }
 
-    private void calculatePriceElectricity(ElectricityBillViewModel electricityBillViewModel) {
-        priceBeforeTax = calculateElectricityBeforeTax(calculateTotalAmountElectricity(electricityBillViewModel));
+    private void calculatePriceElectricity() {
+        priceBeforeTax = calculateElectricityBeforeTax(calculateTotalAmountElectricity());
         priceTotal = calculatePriceTotal(priceBeforeTax);
 
         Locale vn = Locale.forLanguageTag("vi-VN");
@@ -84,7 +84,7 @@ public class ElectricityBillActivity extends AppCompatActivity {
         electricityBillViewModel.setPriceTotal(numberFormat.format((int) Math.round(priceTotal)));
     }
 
-    private int calculateTotalAmountElectricity(ElectricityBillViewModel electricityBillViewModel) {
+    private int calculateTotalAmountElectricity() {
         String strFirstNum = electricityBillViewModel.getFirstNumber();
         String strSecondNum = electricityBillViewModel.getSecondNumber();
         String strTotalAmountElectricity = electricityBillViewModel.getTotalAmountElectricity();
@@ -153,7 +153,7 @@ public class ElectricityBillActivity extends AppCompatActivity {
     }
 
     private double calculatePriceTotal(double priceBeforeTax) {
-        priceTax = (double) (priceBeforeTax * 0.08);
+        priceTax = priceBeforeTax * 0.08;
         priceTotal = priceBeforeTax + priceTax;
         return priceTotal;
     }
