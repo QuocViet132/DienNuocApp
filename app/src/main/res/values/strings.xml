@@ -25,8 +25,15 @@
     <string name="totalAmountWater">Khối lượng nước tiêu thụ (m3)</string>
     <string name="price_water_tax">Thuế GTGT (5%)</string>
 
+    <!--     Statistic Activity    -->
+    <string name="title_statistic">Thống Kê</string>
+
     <!-- Electric Price Fragment -->
     <string name="detail">Theo quyết định số 1062/QĐ-BCT giá bán lẻ điện cho sinh hoạt được tính như sau:</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    
+    <!-- Statistic Total Fragment -->
+    <string name="title_statistic_total">Tổng số tiền thanh toán</string>
+
+    <!-- Statistic Average Fragment -->
+    <string name="title_statistic_average">Số tiền trung bình\nmỗi tháng</string>
 </resources>
