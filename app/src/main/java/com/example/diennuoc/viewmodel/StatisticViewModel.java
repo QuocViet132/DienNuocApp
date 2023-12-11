@@ -7,6 +7,7 @@ import com.example.diennuoc.BR;
 
 public class StatisticViewModel extends BaseObservable {
     private boolean isClickCvTotal = false;
+    private boolean isClickCvAverage = false;
 
     public void setClickCvTotal(boolean clickCvTotal) {
         isClickCvTotal = clickCvTotal;
@@ -18,8 +19,6 @@ public class StatisticViewModel extends BaseObservable {
         notifyPropertyChanged(BR.clickCvAverage);
     }
 
-    private boolean isClickCvAverage = false;
-
     @Bindable
     public boolean isClickCvTotal() {
         return isClickCvTotal;
@@ -30,16 +29,14 @@ public class StatisticViewModel extends BaseObservable {
         return isClickCvAverage;
     }
 
-    public boolean onClickCvTotal() {
+    public void onClickCvTotal() {
         setClickCvTotal(true);
         setClickCvAverage(false);
-        return true;
     }
 
-    public boolean onClickCvAverage() {
+    public void onClickCvAverage() {
         setClickCvTotal(false);
         setClickCvAverage(true);
-        return true;
     }
 
 }

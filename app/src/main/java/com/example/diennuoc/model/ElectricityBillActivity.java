@@ -33,43 +33,27 @@ public class ElectricityBillActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivityElectricityBillBinding = ActivityElectricityBillBinding.inflate(getLayoutInflater());
+        setContentView(mActivityElectricityBillBinding.getRoot());
+        mActivityElectricityBillBinding.setElectricityBillViewModel(electricityBillViewModel);
 
         clickButton();
-
-        mActivityElectricityBillBinding.setElectricityBillViewModel(electricityBillViewModel);
-        setContentView(mActivityElectricityBillBinding.getRoot());
     }
 
     private void clickButton() {
-        mActivityElectricityBillBinding.ivInfor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.add(R.id.layout_electric_bill, new ElectricPriceFragment()).addToBackStack(null);
-                fragmentTransaction.commit();
-            }
+        mActivityElectricityBillBinding.ivInfor.setOnClickListener(v -> {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.add(R.id.layout_electric_bill, new ElectricPriceFragment()).addToBackStack(null).commit();
         });
 
-        mActivityElectricityBillBinding.ivBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        mActivityElectricityBillBinding.ivBack.setOnClickListener(v -> finish());
 
-        mActivityElectricityBillBinding.btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        mActivityElectricityBillBinding.btnSave.setOnClickListener(v -> saveData());
 
-            }
-        });
+        mActivityElectricityBillBinding.btnCalculate.setOnClickListener(v -> calculatePriceElectricity());
+    }
 
-        mActivityElectricityBillBinding.btnCalculate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calculatePriceElectricity();
-            }
-        });
+    private void saveData() {
+        // Handler save in this method
     }
 
     private void calculatePriceElectricity() {

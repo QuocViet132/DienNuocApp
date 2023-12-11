@@ -130,7 +130,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="0"
+                    android:hint="@string/default_value"
                     android:text="@={WaterBillViewModel.firstNumber}"
                     android:inputType="number"
                     android:textSize="20sp" />
@@ -147,7 +147,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="0"
+                    android:hint="@string/default_value"
                     android:text="@={WaterBillViewModel.secondNumber}"
                     android:inputType="number"
                     android:textSize="20sp" />
@@ -175,7 +175,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="0"
+                    android:hint="@string/default_value"
                     android:text="@={WaterBillViewModel.totalAmountWater}"
                     android:textSize="20sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -198,7 +198,7 @@
                 android:layout_height="0dp"
                 android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/custom_green"
-                android:text="Lưu"
+                android:text="@string/button_save"
                 android:textColor="@color/custom_yellow"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -210,7 +210,7 @@
                 android:layout_width="180dp"
                 android:layout_height="0dp"
                 android:backgroundTint="@color/custom_green"
-                android:text="Tính"
+                android:text="@string/button_calculate"
                 android:textColor="@color/custom_yellow"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -257,8 +257,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
-                android:gravity="right"
-                android:hint="0"
+                android:gravity="end"
+                android:hint="@string/default_value"
                 android:text="@{WaterBillViewModel.priceBeforeTax}"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -273,8 +273,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
-                android:gravity="right"
-                android:hint="0"
+                android:gravity="end"
+                android:hint="@string/default_value"
                 android:text="@{WaterBillViewModel.priceTax}"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -289,8 +289,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
-                android:gravity="right"
-                android:hint="0"
+                android:gravity="end"
+                android:hint="@string/default_value"
                 android:text="@{WaterBillViewModel.priceTotal}"
                 android:textColor="@color/custom_red"
                 android:textSize="22sp"

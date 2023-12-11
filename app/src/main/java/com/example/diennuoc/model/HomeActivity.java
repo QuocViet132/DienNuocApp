@@ -1,73 +1,87 @@
 package com.example.diennuoc.model;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.diennuoc.databinding.ActivityHomeBinding;
 
 public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding mActivityHomeBinding;
+    private HomeViewModel homeViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivityHomeBinding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(mActivityHomeBinding.getRoot());
 
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        mActivityHomeBinding.setHomeViewModel(homeViewModel);
+        mActivityHomeBinding.setLifecycleOwner(this);
+
         clickItems();
     }
 
     private void clickItems() {
-        mActivityHomeBinding.icUsers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        mActivityHomeBinding.icUsers.setOnClickListener(v -> homeViewModel.onClickUser());
+        mActivityHomeBinding.icSettings.setOnClickListener(v -> homeViewModel.onClickSettings());
+        mActivityHomeBinding.cvElectricity.setOnClickListener(v -> homeViewModel.onClickElectric());
+        mActivityHomeBinding.cvWater.setOnClickListener(v -> homeViewModel.onClickWater());
+        mActivityHomeBinding.cvHistory.setOnClickListener(v -> homeViewModel.onClickHistory());
+        mActivityHomeBinding.cvStatistic.setOnClickListener(v -> homeViewModel.onClickStatistic());
 
-                Toast.makeText(HomeActivity.this,"Users",Toast.LENGTH_SHORT).show();
+        observeClickEvents();
+    }
+
+    private void observeClickEvents() {
+        homeViewModel.getClickedUser().observe(this, clickedUser -> {
+            if (clickedUser) {
+                Toast.makeText(HomeActivity.this, "Users", Toast.LENGTH_SHORT).show();
+                homeViewModel.getClickedUser().setValue(false);
             }
         });
 
-        mActivityHomeBinding.icSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+        homeViewModel.getClickedSettings().observe(this, clickedSettings -> {
+            if (clickedSettings) {
+                // Handler event click this
                 Toast.makeText(HomeActivity.this,"Settings",Toast.LENGTH_SHORT).show();
+                homeViewModel.getClickedSettings().setValue(false);
             }
         });
 
-        mActivityHomeBinding.cvElectricity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        homeViewModel.getClickedElectric().observe(this, clickedElectric -> {
+            if (clickedElectric) {
                 Intent intentElectricity = new Intent(HomeActivity.this, ElectricityBillActivity.class);
                 startActivity(intentElectricity);
+                homeViewModel.getClickedElectric().setValue(false);
             }
         });
 
-        mActivityHomeBinding.cvWater.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        homeViewModel.getClickedWater().observe(this, clickedWater -> {
+            if (clickedWater) {
                 Intent intentWater = new Intent(HomeActivity.this, WaterBillActivity.class);
                 startActivity(intentWater);
+                homeViewModel.getClickedWater().setValue(false);
             }
         });
 
-        mActivityHomeBinding.cvHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        homeViewModel.getClickedHistory().observe(this, clickedHistory -> {
+            if (clickedHistory) {
                 Intent intentHistory = new Intent(HomeActivity.this, HistoryActivity.class);
                 startActivity(intentHistory);
+                homeViewModel.getClickedHistory().setValue(false);
             }
         });
 
-        mActivityHomeBinding.cvStatistic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        homeViewModel.getClickedStatistic().observe(this, clickedStatistic -> {
+            if (clickedStatistic) {
                 Intent intentStatistic = new Intent(HomeActivity.this, StatisticActivity.class);
                 startActivity(intentStatistic);
+                homeViewModel.getClickedStatistic().setValue(false);
             }
         });
     }
-
 }

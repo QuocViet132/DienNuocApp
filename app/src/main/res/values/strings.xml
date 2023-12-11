@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">DienNuoc</string>
     <string name="app_logo">logo</string>
+    <string name="default_value">0</string>
 
     <!--     Home Activity    -->
     <string name="title_home">Trang Chủ</string>
@@ -19,6 +20,8 @@
     <string name="price_before_tax">Tiền trước thuế</string>
     <string name="price_electric_tax">Thuế GTGT (8%)</string>
     <string name="price_total">Tổng cộng (VNĐ)</string>
+    <string name="button_calculate">Tính</string>
+    <string name="button_save">Lưu</string>
 
     <!--     Electricity Bill Activity    -->
     <string name="title_water_bill">Tính Nước</string>

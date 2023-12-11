@@ -27,42 +27,27 @@ public class WaterBillActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityWaterBillBinding = ActivityWaterBillBinding.inflate(getLayoutInflater());
+        setContentView(activityWaterBillBinding.getRoot());
+        activityWaterBillBinding.setWaterBillViewModel(waterBillViewModel);
 
         clickButton();
-
-        activityWaterBillBinding.setWaterBillViewModel(waterBillViewModel);
-        setContentView(activityWaterBillBinding.getRoot());
     }
 
     private void clickButton() {
-        activityWaterBillBinding.ivBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
+        activityWaterBillBinding.ivBack.setOnClickListener(v -> finish());
+
+        activityWaterBillBinding.ivInfor.setOnClickListener(v -> {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.add(R.id.layout_water_bill, new WaterPriceFragment()).addToBackStack(null).commit();
         });
 
-        activityWaterBillBinding.ivInfor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.add(R.id.layout_water_bill, new WaterPriceFragment()).addToBackStack(null).commit();
-            }
-        });
+        activityWaterBillBinding.btnSave.setOnClickListener(v -> saveData());
 
-        activityWaterBillBinding.btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        activityWaterBillBinding.btnCalculate.setOnClickListener(v -> calculatePriceWater());
+    }
 
-            }
-        });
-
-        activityWaterBillBinding.btnCalculate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calculatePriceWater();
-            }
-        });
+    private void saveData() {
+        // Handler save in this method
     }
 
     private void calculatePriceWater() {
