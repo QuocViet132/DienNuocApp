@@ -4,16 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.diennuoc.R;
+import com.example.diennuoc.database.AppDatabase;
+import com.example.diennuoc.database.ElectricBills;
 import com.example.diennuoc.databinding.ActivityElectricityBillBinding;
 import com.example.diennuoc.model.fragment.ElectricPriceFragment;
 import com.example.diennuoc.viewmodel.ElectricityBillViewModel;
 
 import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class ElectricityBillActivity extends AppCompatActivity {
@@ -53,7 +59,40 @@ public class ElectricityBillActivity extends AppCompatActivity {
     }
 
     private void saveData() {
-        // Handler save in this method
+        boolean isValidValue = checkValueBeforeSave();
+        if (isValidValue) {
+            String startDate, endDate, amountTotal;
+            int priceTotal;
+
+            startDate = electricityBillViewModel.getStartDate();
+            endDate = electricityBillViewModel.getEndDate();
+            amountTotal = electricityBillViewModel.getTotalAmountElectricity();
+            priceTotal = (int) Math.round(this.priceTotal);
+
+            if (TextUtils.isEmpty(startDate) || TextUtils.isEmpty(endDate)) {
+                LocalDate currentDate = LocalDate.now();
+                int day = currentDate.getDayOfMonth();
+                int month = currentDate.getMonthValue();
+                int year = currentDate.getYear();
+
+                startDate = " ";
+                endDate = String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year);
+            }
+
+            ElectricBills electricBills = new ElectricBills(startDate, endDate, amountTotal, priceTotal);
+            AppDatabase.getInstance(this).electricBillsDao().insertElectricBills(electricBills);
+            Toast.makeText(this,"Lưu dữ liệu thành công",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this,"Lưu dữ liệu thất bại",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean checkValueBeforeSave() {
+        if (TextUtils.isEmpty(mActivityElectricityBillBinding.tvPriceTotalElectric.getText().toString())) {
+            Toast.makeText(this,"Hãy thực hiện tính toán trước khi lưu",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     private void calculatePriceElectricity() {

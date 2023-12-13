@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.diennuoc.databinding.ActivityHomeBinding;
+import com.example.diennuoc.viewmodel.HomeViewModel;
 
 public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding mActivityHomeBinding;

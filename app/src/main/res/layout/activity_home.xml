@@ -5,7 +5,7 @@
     <data>
         <variable
             name="HomeViewModel"
-            type="com.example.diennuoc.model.HomeViewModel" />
+            type="com.example.diennuoc.viewmodel.HomeViewModel" />
     </data>
 
     <RelativeLayout

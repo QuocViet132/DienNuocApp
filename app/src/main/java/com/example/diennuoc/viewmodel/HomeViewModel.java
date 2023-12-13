@@ -1,4 +1,4 @@
-package com.example.diennuoc.model;
+package com.example.diennuoc.viewmodel;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
