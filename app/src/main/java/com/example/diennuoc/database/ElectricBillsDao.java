@@ -12,6 +12,9 @@ public interface ElectricBillsDao {
     @Query("SELECT * FROM electricbills")
     List<ElectricBills> getElectricBillsAll();
 
+    @Query("SELECT paymentElectric FROM electricbills")
+    List<Integer> getAllPaymentElectric();
+
     @Query("DELETE FROM electricbills")
     void deleteAllElectricBills();
 

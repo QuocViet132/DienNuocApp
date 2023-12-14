@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.diennuoc.R;
+import com.example.diennuoc.database.AppDatabase;
 import com.example.diennuoc.databinding.ActivityStatisticBinding;
 import com.example.diennuoc.model.fragment.StatisticAverageFragment;
 import com.example.diennuoc.model.fragment.StatisticTotalFragment;
@@ -19,22 +20,27 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StatisticActivity extends AppCompatActivity {
     private ActivityStatisticBinding activityStatisticBinding;
+    private StatisticViewModel statisticViewModel;
+    private int totalPriceElectric=0, totalPriceWater=0;
+    private int averagePriceElectric=0, averagePriceWater=0, amountBillsElectric=1, amountBillsWater=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityStatisticBinding = ActivityStatisticBinding.inflate(getLayoutInflater());
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        StatisticViewModel statisticViewModel = new StatisticViewModel();
+        setContentView(activityStatisticBinding.getRoot());
+        statisticViewModel = new StatisticViewModel();
+        activityStatisticBinding.setStatisticViewModel(statisticViewModel);
 
         initial();
-        clickButton(statisticViewModel);
-        DisplayPieChart();
+        clickButton();
+        statisticTotal();
+        statisticAverage();
+        displayPieChart();
 
-        activityStatisticBinding.setStatisticViewModel(statisticViewModel);
-        setContentView(activityStatisticBinding.getRoot());
     }
 
     private void initial() {
@@ -42,7 +48,7 @@ public class StatisticActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.layout_statistic_details, new StatisticTotalFragment()).commit();
     }
 
-    private void clickButton(StatisticViewModel statisticViewModel) {
+    private void clickButton() {
         activityStatisticBinding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,18 +75,57 @@ public class StatisticActivity extends AppCompatActivity {
         });
     }
 
-    private void DisplayPieChart() {
+    private void statisticTotal() {
+        List<Integer> listPriceElectric = new ArrayList<>();
+        List<Integer> listPriceWater = new ArrayList<>();
+        listPriceElectric = AppDatabase.getInstance(this).electricBillsDao().getAllPaymentElectric();
+        listPriceWater = AppDatabase.getInstance(this).waterBillsDao().getAllPaymentWater();
+
+        if (listPriceElectric != null) {
+            totalPriceElectric = calculateSum(listPriceElectric);
+            amountBillsElectric = listPriceElectric.size();
+        }
+
+        if (listPriceWater != null) {
+            totalPriceWater = calculateSum(listPriceWater);
+            amountBillsWater = listPriceWater.size();
+        }
+
+        Log.e("Total Price Electric",String.valueOf(totalPriceElectric));
+        Log.e("Amount Bills Electric",String.valueOf(amountBillsElectric));
+        Log.e("Total Price Water",String.valueOf(totalPriceWater));
+        Log.e("Amount Bills Water",String.valueOf(amountBillsWater));
+    }
+
+    private void statisticAverage() {
+        if (amountBillsElectric != 0) {
+            averagePriceElectric = totalPriceElectric/amountBillsElectric;
+        }
+        if(amountBillsWater != 0) {
+            averagePriceWater = totalPriceWater/amountBillsWater;
+        }
+    }
+
+    private int calculateSum(List<Integer> list) {
+        int sum = 0;
+        for (int i=0; i<list.size(); i++) {
+            sum += list.get(i);
+        }
+        return sum;
+    }
+
+    private void displayPieChart() {
         PieChart pieChartTotal = activityStatisticBinding.pieChartTotal;
         PieChart pieChartAverage = activityStatisticBinding.pieChartAverage;
 
         // Create list entries for Donut Chart
         ArrayList<PieEntry> entriesTotal = new ArrayList<>();
-        entriesTotal.add(new PieEntry(700,"Điện"));
-        entriesTotal.add(new PieEntry(300,"Nước"));
+        entriesTotal.add(new PieEntry(totalPriceElectric,"Điện"));
+        entriesTotal.add(new PieEntry(totalPriceWater,"Nước"));
 
         ArrayList<PieEntry> entriesAverage = new ArrayList<>();
-        entriesAverage.add(new PieEntry(50,"Điện"));
-        entriesAverage.add(new PieEntry(50,"Nước"));
+        entriesAverage.add(new PieEntry(averagePriceElectric,"Điện"));
+        entriesAverage.add(new PieEntry(averagePriceWater,"Nước"));
 
         // Create DataSet
         PieDataSet dataSetTotal = new PieDataSet(entriesTotal, "");
