@@ -9,10 +9,10 @@ public class WaterBills {
     private int id;
     private String startDate;
     private String endDate;
-    private int amountWater;
-    private String paymentWater;
+    private String amountWater;
+    private int paymentWater;
 
-    public WaterBills(String startDate, String endDate, int amountWater, String paymentWater) {
+    public WaterBills(String startDate, String endDate, String amountWater, int paymentWater) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.amountWater = amountWater;
@@ -43,19 +43,19 @@ public class WaterBills {
         this.endDate = endDate;
     }
 
-    public int getAmountWater() {
+    public String getAmountWater() {
         return amountWater;
     }
 
-    public void setAmountWater(int amountWater) {
+    public void setAmountWater(String amountWater) {
         this.amountWater = amountWater;
     }
 
-    public String getPaymentWater() {
+    public int getPaymentWater() {
         return paymentWater;
     }
 
-    public void setPaymentWater(String paymentWater) {
+    public void setPaymentWater(int paymentWater) {
         this.paymentWater = paymentWater;
     }
 }

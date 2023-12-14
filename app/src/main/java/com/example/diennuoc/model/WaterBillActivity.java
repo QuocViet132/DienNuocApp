@@ -4,15 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.diennuoc.R;
+import com.example.diennuoc.database.AppDatabase;
+import com.example.diennuoc.database.WaterBills;
 import com.example.diennuoc.databinding.ActivityWaterBillBinding;
 import com.example.diennuoc.model.fragment.WaterPriceFragment;
 import com.example.diennuoc.viewmodel.WaterBillViewModel;
 
 import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.util.Locale;
 
 public class WaterBillActivity extends AppCompatActivity {
@@ -47,7 +51,40 @@ public class WaterBillActivity extends AppCompatActivity {
     }
 
     private void saveData() {
-        // Handler save in this method
+        boolean isValidValue = checkValueBeforeSave();
+        if (isValidValue) {
+            String tvStartDate, tvEndDate, tvAmount;
+            int tvPriceTotal;
+
+            tvStartDate = waterBillViewModel.getStartDate();
+            tvEndDate = waterBillViewModel.getEndDate();
+            tvAmount = waterBillViewModel.getTotalAmountWater();
+            tvPriceTotal = (int) Math.round(priceTotal);
+
+            if (TextUtils.isEmpty(tvStartDate) || TextUtils.isEmpty(tvEndDate)) {
+                LocalDate currentDate = LocalDate.now();
+                int day = currentDate.getDayOfMonth();
+                int month = currentDate.getMonthValue();
+                int year = currentDate.getYear();
+
+                tvStartDate = " ";
+                tvEndDate = String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year);
+            }
+
+            WaterBills waterBills = new WaterBills(tvStartDate,tvEndDate,tvAmount,tvPriceTotal);
+            AppDatabase.getInstance(this).waterBillsDao().insertWaterBills(waterBills);
+            Toast.makeText(this,"Lưu dữ liệu thành công",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this,"Lưu dữ liệu thất bại",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean checkValueBeforeSave() {
+        if (TextUtils.isEmpty(activityWaterBillBinding.tvPriceTotalWater.getText().toString())) {
+            Toast.makeText(this,"Hãy thực hiện tính toán trước khi lưu",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     private void calculatePriceWater() {

@@ -69,6 +69,7 @@ public class HistoryActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 AppDatabase.getInstance(HistoryActivity.this).electricBillsDao().deleteAllElectricBills();
+                                                AppDatabase.getInstance(HistoryActivity.this).waterBillsDao().deleteAllWaterBills();
                                                 initialUI();
                                                 Toast.makeText(HistoryActivity.this,"Xoá thành công",Toast.LENGTH_SHORT).show();
                                             }

@@ -11,6 +11,9 @@ public interface WaterBillsDao {
     @Query("SELECT * FROM waterbills")
     List<WaterBills> getWaterBillsAll();
 
+    @Query("DELETE FROM waterbills")
+    void deleteAllWaterBills();
+
     @Insert
     void insertWaterBills(WaterBills waterBills);
 }
