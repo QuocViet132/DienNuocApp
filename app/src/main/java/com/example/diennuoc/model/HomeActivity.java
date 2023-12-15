@@ -40,7 +40,7 @@ public class HomeActivity extends AppCompatActivity {
     private void observeClickEvents() {
         homeViewModel.getClickedUser().observe(this, clickedUser -> {
             if (clickedUser) {
-                Toast.makeText(HomeActivity.this, "Users", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this, "Tính năng sẽ được cập nhập ở phiên bản tiếp theo", Toast.LENGTH_SHORT).show();
                 homeViewModel.getClickedUser().setValue(false);
             }
         });
@@ -48,7 +48,7 @@ public class HomeActivity extends AppCompatActivity {
         homeViewModel.getClickedSettings().observe(this, clickedSettings -> {
             if (clickedSettings) {
                 // Handler event click this
-                Toast.makeText(HomeActivity.this,"Settings",Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this,"Tính năng sẽ được cập nhập ở phiên bản tiếp theo",Toast.LENGTH_SHORT).show();
                 homeViewModel.getClickedSettings().setValue(false);
             }
         });

@@ -19,8 +19,10 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class StatisticActivity extends AppCompatActivity {
     private ActivityStatisticBinding activityStatisticBinding;
@@ -40,12 +42,23 @@ public class StatisticActivity extends AppCompatActivity {
         statisticTotal();
         statisticAverage();
         displayPieChart();
+        updateValue();
+    }
 
+    private void updateValue() {
+        Locale vn = Locale.forLanguageTag("vi-VN");
+        NumberFormat numberFormat = NumberFormat.getInstance(vn);
+        statisticViewModel.setTotalElectricPrice(numberFormat.format(totalPriceElectric));
+        statisticViewModel.setTotalWaterPrice(numberFormat.format(totalPriceWater));
+        statisticViewModel.setTotalPrice(numberFormat.format(totalPriceElectric + totalPriceWater));
+        statisticViewModel.setAverageElectricPrice(numberFormat.format(averagePriceElectric));
+        statisticViewModel.setAverageWaterPrice(numberFormat.format(averagePriceWater));
+        statisticViewModel.setAveragePrice(numberFormat.format(averagePriceElectric + averagePriceWater));
     }
 
     private void initial() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.layout_statistic_details, new StatisticTotalFragment()).commit();
+        fragmentTransaction.add(R.id.layout_statistic_details, new StatisticTotalFragment(statisticViewModel)).commit();
     }
 
     private void clickButton() {
@@ -61,7 +74,7 @@ public class StatisticActivity extends AppCompatActivity {
             public void onClick(View v) {
                 statisticViewModel.onClickCvTotal();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.layout_statistic_details, new StatisticTotalFragment()).commit();
+                fragmentTransaction.replace(R.id.layout_statistic_details, new StatisticTotalFragment(statisticViewModel)).commit();
             }
         });
 
@@ -70,7 +83,7 @@ public class StatisticActivity extends AppCompatActivity {
             public void onClick(View v) {
                 statisticViewModel.onClickCvAverage();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.layout_statistic_details, new StatisticAverageFragment()).commit();
+                fragmentTransaction.replace(R.id.layout_statistic_details, new StatisticAverageFragment(statisticViewModel)).commit();
             }
         });
     }
@@ -90,11 +103,6 @@ public class StatisticActivity extends AppCompatActivity {
             totalPriceWater = calculateSum(listPriceWater);
             amountBillsWater = listPriceWater.size();
         }
-
-        Log.e("Total Price Electric",String.valueOf(totalPriceElectric));
-        Log.e("Amount Bills Electric",String.valueOf(amountBillsElectric));
-        Log.e("Total Price Water",String.valueOf(totalPriceWater));
-        Log.e("Amount Bills Water",String.valueOf(amountBillsWater));
     }
 
     private void statisticAverage() {

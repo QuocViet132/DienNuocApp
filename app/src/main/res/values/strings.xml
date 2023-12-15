@@ -30,6 +30,10 @@
 
     <!--     Statistic Activity    -->
     <string name="title_statistic">Thống Kê</string>
+    <string name="electric">Điện</string>
+    <string name="water">Nước</string>
+    <string name="vnd">VNĐ</string>
+    <string name="total">Tổng</string>
 
     <!-- Electric Price Fragment -->
     <string name="detail">Theo quyết định số 1062/QĐ-BCT giá bán lẻ điện cho sinh hoạt được tính như sau:</string>
@@ -39,8 +43,10 @@
 
     <!-- Statistic Average Fragment -->
     <string name="title_statistic_average">Số tiền trung bình\nmỗi tháng</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- item history -->
     <string name="electric_amount">Điện năng tiêu thụ (kWh)</string>
     <string name="water_amount">Số khối nước tiêu thụ (m3)</string>
     <string name="item_payment">Thành tiền (VNĐ)</string>
+
 </resources>
