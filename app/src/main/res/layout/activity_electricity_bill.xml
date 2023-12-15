@@ -6,7 +6,7 @@
     <data>
         <variable
             name="ElectricityBillViewModel"
-            type="com.example.diennuoc.viewmodel.ElectricityBillViewModel" />
+            type="com.example.vietbills.viewmodel.ElectricityBillViewModel" />
     </data>
 
     <FrameLayout

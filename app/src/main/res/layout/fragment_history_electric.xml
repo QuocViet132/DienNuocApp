@@ -6,7 +6,7 @@
     <data>
         <variable
             name="HistoryViewModel"
-            type="com.example.diennuoc.viewmodel.HistoryViewModel" />
+            type="com.example.vietbills.viewmodel.HistoryViewModel" />
     </data>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_electric_history"

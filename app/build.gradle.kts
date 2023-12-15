@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.diennuoc"
+    namespace = "com.example.vietbills"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.diennuoc"
+        applicationId = "com.example.vietbills"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

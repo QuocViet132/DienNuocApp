@@ -6,7 +6,7 @@
     <data>
         <variable
             name="StatisticViewModel"
-            type="com.example.diennuoc.viewmodel.StatisticViewModel" />
+            type="com.example.vietbills.viewmodel.StatisticViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
