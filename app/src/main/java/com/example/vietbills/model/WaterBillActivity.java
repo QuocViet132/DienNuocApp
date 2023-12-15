@@ -79,7 +79,8 @@ public class WaterBillActivity extends AppCompatActivity {
     }
 
     private boolean checkValueBeforeSave() {
-        if (TextUtils.isEmpty(activityWaterBillBinding.tvPriceTotalWater.getText().toString())) {
+        if (TextUtils.isEmpty(activityWaterBillBinding.tvPriceTotalWater.getText().toString())
+                || activityWaterBillBinding.tvPriceTotalWater.getText().toString().equals("0")) {
             Toast.makeText(this,"Hãy thực hiện tính toán trước khi lưu",Toast.LENGTH_SHORT).show();
             return false;
         }

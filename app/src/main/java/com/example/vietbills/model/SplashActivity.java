@@ -26,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intentMoveToHome);
                 finish();
             }
-        },5000);
+        },3000);
     }
 
     @Override

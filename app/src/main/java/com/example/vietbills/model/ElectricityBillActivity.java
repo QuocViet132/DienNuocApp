@@ -84,7 +84,8 @@ public class ElectricityBillActivity extends AppCompatActivity {
     }
 
     private boolean checkValueBeforeSave() {
-        if (TextUtils.isEmpty(mActivityElectricityBillBinding.tvPriceTotalElectric.getText().toString())) {
+        if (TextUtils.isEmpty(mActivityElectricityBillBinding.tvPriceTotalElectric.getText().toString())
+                || mActivityElectricityBillBinding.tvPriceTotalElectric.getText().toString().equals("0")) {
             Toast.makeText(this,"Hãy thực hiện tính toán trước khi lưu",Toast.LENGTH_SHORT).show();
             return false;
         }
