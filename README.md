@@ -3,8 +3,11 @@ An application that helps calculate the cost of using electricity and water for 
 
 # Summary
 Architectural: MVVM
+
 Databese: SQLite
+
 UI: Use Material Design's principles to design User Interface
+
 Technology: Room Database, LiveData, CardView, MPAndroidChart
 
 <img src="https://github.com/QuocViet132/DienNuocApp/blob/master/imageUI/homeUI.png" alt="HomeUI" width="250" /> <img 
