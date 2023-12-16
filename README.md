@@ -8,8 +8,8 @@ An application that helps calculate the cost of using electricity and water for 
   - **_Technology:_** Room Database, LiveData, CardView, MPAndroidChart
 
 # Demo
-![Video Demo]("https://youtu.be/Q-rPpAqBZiA")
-https://youtu.be/Q-rPpAqBZiA
+[Video Demo](https://youtu.be/Q-rPpAqBZiA)
+
 <img src="https://github.com/QuocViet132/DienNuocApp/blob/master/imageUI/homeUI.png" alt="HomeUI" width="250" /> <img 
 src="https://github.com/QuocViet132/DienNuocApp/blob/master/imageUI/homeUI.png" alt="HomeUI" width="250" />
 
