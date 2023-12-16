@@ -3,7 +3,7 @@ An application that helps calculate the cost of using electricity and water for 
 
 # Summary
   - **_Architectural:_** MVVM
-  - **_Databese:_** SQLite
+  - **_Database:_** SQLite
   - **_UI:_** Use Material Design's principles to design User Interface
   - **_Technology:_** Room Database, LiveData, CardView, MPAndroidChart
 
