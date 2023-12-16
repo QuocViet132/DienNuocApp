@@ -7,6 +7,7 @@ An application that helps calculate the cost of using electricity and water for 
   - **_UI:_** Use Material Design's principles to design User Interface
   - **_Technology:_** Room Database, LiveData, CardView, MPAndroidChart
 
+# Demo
 <img src="https://github.com/QuocViet132/DienNuocApp/blob/master/imageUI/homeUI.png" alt="HomeUI" width="250" /> <img 
 src="https://github.com/QuocViet132/DienNuocApp/blob/master/imageUI/homeUI.png" alt="HomeUI" width="250" />
 
